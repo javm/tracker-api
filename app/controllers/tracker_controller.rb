@@ -12,7 +12,8 @@ class TrackerController < ApplicationController
   # GET /track/:provider
   def track
     @provider = params[:provider]
+    @package_id = params[:package]
     fedex = FedexShipper.new()
-    @track_status = fedex.map_status()
+    @track_status = fedex.map_status(@package_id)
   end
 end
