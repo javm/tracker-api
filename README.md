@@ -5,8 +5,6 @@
 * Rails 6.0.2.1 >=
 * Mongoid ~> 7.0
 * Debian 10
-
-* ...
 # tracker-api
 ## Endpoints:
 `GET /track/:provider?package=paqueteTrackID`
