@@ -10,12 +10,14 @@
 # tracker-api
 ## Endpoints:
 `GET /track/:provider?package=paqueteTrackID`
-** Obtenemos el status del paquete con número de rastreo paqueteTrackID y para el provider :provider. ej. ( `GET /track/fedex=package=122324` )
+
+Obtenemos el status del paquete con número de rastreo paqueteTrackID con el proveedor 'provider' ej. ( `GET /track/fedex=package=122324  )
 
 Para obtener el status de un paquete
 
 ## Run tests
-** `rails test test/controllers/tracker_controller_test.rb
+
+ `rails test test/controllers/tracker_controller_test.rb
 
 ## Implementación para otro provider
 1. Extiende la clase Shipper
