@@ -24,4 +24,5 @@ Para obtener el status de un paquete
 2. Implementa `map_status`  
 2.1 `include StatusReader`  
 2.2 Al implementar `map_status`  para tu proveedor regresa un JSON de la siguiente forma:
+
   `{:provider_message => fedex_status, :status => status}`  
