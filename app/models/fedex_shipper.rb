@@ -12,18 +12,27 @@ class FedexShipper < Shipper
 
   def map_status(tracking_number)
     #status = ["CREATED", "ON_TRANSIT", "DELIVERED", "EXCEPTION"]
-    results =  @fedex.track(:tracking_number => tracking_number)
-    fedex_status = results.first.status
-    puts fedex_status
+    fedex_status = nil
+    begin
+      results =  @fedex.track(:tracking_number => tracking_number)
+    rescue StandardError => err
+      fedex_status = "Exception running test: " + err.message
+    end
+    if(not fedex_status)
+      fedex_status = results.first.status
+    end
     case fedex_status
     when "Shipment information sent to FedEx"
-      "CREATED"
+      status = "CREATED"
     when "Delivered"
-      "DELIVERED"
-    when /exception|cancelled/
-      "EXCEPTION"
+      status = "DELIVERED"
+    when /exception|cancelled/i
+      status = "EXCEPTION"
     else
-      "ON_TRANSIT"
+      status = "ON_TRANSIT"
     end
+
+    {:provider_message => fedex_status, :status => status}
+
   end
 end
